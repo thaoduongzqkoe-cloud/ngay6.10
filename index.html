@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vòng quay may mắn</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 50% 10%, #f0f9ff, #fef6ff);
+  margin: 0; padding: 0; text-align: center;
+}
+h1 {margin: 30px 0 10px; font-weight:700; color:#222;}
+button {background: linear-gradient(45deg,#ffa500,#ffd700); border:none; border-radius:10px; padding:12px 25px; font-size:18px; font-weight:700; cursor:pointer; box-shadow:0 8px 18px rgba(255,158,13,.4);}
+#wheel {width:360px;height:360px;border-radius:50%;border:10px solid #222;margin:auto;transition:transform 4s ease-out;position:relative;}
+.label {position:absolute;top:50%;left:50%;transform-origin:center center;color:white;font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,0.5);}
+#arrow{width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-bottom:28px solid #ef4444;margin:auto;margin-top:-10px;}
+#result{font-size:20px;margin-top:10px;}
+.blog {max-width:900px;margin:40px auto;background:white;border-radius:16px;box-shadow:0 6px 25px rgba(0,0,0,0.08);padding:30px;text-align:left;}
+.blog img {width:100%;border-radius:12px;margin:20px 0;}
+.blog h2 {font-size:28px;margin-bottom:10px;color:#222;}
+.blog p {line-height:1.8;margin:14px 0;color:#333;font-size:16px;}
+.categories {display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:900px;margin:40px auto;padding-bottom:50px;}
+.category {background:white;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.08);overflow:hidden;transition:transform .2s;}
+.category:hover {transform:translateY(-5px);}
+.category img {width:100%;height:140px;object-fit:cover;}
+.category h3 {margin:12px;font-size:18px;color:#111;}
+</style>
+</head>
+<body>
+<h1>🎯 Vòng quay may mắn 🎯</h1>
+<div id="arrow"></div>
+<div id="wheel"></div>
+<br><button id="spinBtn" onclick="spin()">Quay ngay!</button>
+<h2 id="result"></h2>
+
+<section class="blog">
+  <h2>Đời sống tự nhiên – Bản giao hưởng giữa con người và Trái đất</h2>
+  <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80" alt="Nature ocean">
+  <p>Thiên nhiên luôn tồn tại song song cùng con người – vừa là nguồn sống, vừa là nơi trú ngụ tinh thần. Khi ta ngừng lại giữa nhịp sống hối hả, lắng nghe tiếng gió thổi qua cành, tiếng nước chảy róc rách, hay mùi đất ẩm sau cơn mưa, ta nhận ra sự bình yên vốn vẫn ở quanh ta, chỉ là ta quên lắng nghe.</p>
+  <p>Có lẽ chưa bao giờ con người lại xa rời thiên nhiên như hiện tại. Nhưng cũng chính trong khoảng cách ấy, chúng ta học cách trân trọng hơn từng giọt nước, từng tán cây, từng làn không khí trong lành. Thiên nhiên là người thầy vĩ đại – dạy ta về chu trình sinh diệt, về sự hài hòa và tái sinh không ngừng.</p>
+  <p>Một chiếc lá úa rơi không phải là kết thúc, mà là sự trở về. Nó hòa vào đất, nuôi dưỡng mầm cây mới. Một con suối nhỏ chảy qua khe đá vẫn miệt mài dù bao mùa khô hạn. Một cơn gió nhẹ đủ làm dịu cái nóng, cũng có thể cuốn trôi cả cơn giận trong lòng người.</p>
+  <p>Ở giữa thành phố chật chội, chỉ cần một mảng xanh nhỏ cũng đủ làm dịu tâm hồn. Một chậu cây trên bàn, một khung cửa sổ mở ra ánh nắng sớm, một buổi đi bộ trong công viên – đều là cách để ta trở về với bản chất tươi mới nhất của mình.</p>
+  <p>Thiên nhiên còn dạy ta biết kiên nhẫn. Cây không nôn nóng để ra hoa, mưa không chọn ngày để rơi. Mọi thứ diễn ra theo chu trình hoàn hảo của riêng nó. Và con người, khi biết sống thuận theo tự nhiên, sẽ tìm thấy nhịp sống bền vững và an nhiên hơn bao giờ hết.</p>
+  <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?auto=format&fit=crop&w=1200&q=80" alt="Forest life">
+  <p>Ngày nay, sống xanh không còn là xu hướng, mà là trách nhiệm. Chúng ta có thể bắt đầu từ những điều nhỏ nhất: hạn chế nhựa, tái sử dụng, trồng thêm cây, tiết kiệm nước, giảm bớt năng lượng tiêu hao. Bởi mỗi hành động tích cực, dù nhỏ bé, cũng là một mảnh ghép cho tương lai bền vững của hành tinh.</p>
+  <p>Hãy thử một buổi sáng không điện thoại, thay vào đó là dạo bước ngoài trời. Ngắm ánh sáng chiếu qua từng chiếc lá, nghe chim hót và cảm nhận hơi sương. Đó là liều thuốc tinh thần mà không loại thuốc hiện đại nào có thể thay thế.</p>
+  <p>Đời sống tự nhiên không tách biệt khỏi con người – nó chính là phần gốc rễ bên trong mỗi chúng ta. Khi ta biết yêu thiên nhiên, tức là ta đang học cách yêu chính mình. Hãy cùng nhau trả lại cho Trái Đất những gì tươi đẹp nhất, để mai này con cháu vẫn được hít thở bầu không khí trong lành và sống giữa màu xanh hiền hòa của cỏ cây.</p>
+</section>
+
+<section class="categories">
+  <div class="category">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=80" alt="mountain">
+    <h3>Khám phá núi rừng</h3>
+  </div>
+  <div class="category">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="sea">
+    <h3>Hành trình biển cả</h3>
+  </div>
+  <div class="category">
+    <img src="https://images.unsplash.com/photo-1496568816309-51e0a8d6dc4b?auto=format&fit=crop&w=800&q=80" alt="field">
+    <h3>Cuộc sống đồng quê</h3>
+  </div>
+  <div class="category">
+    <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="animals">
+    <h3>Thế giới động vật</h3>
+  </div>
+</section>
+
+<script>
+const wheel=document.getElementById('wheel');
+const prizes=[
+{text:'+100K',color:'#4caf50',icon:'💎'},
+{text:'+150K',color:'#1976d2',icon:'⚡'},
+{text:'+89K',color:'#ff5f5f',icon:'💰'},
+{text:'+119K',color:'#9c27b0',icon:'🎉'}
+];
+const step=360/prizes.length;
+wheel.style.background=`conic-gradient(${prizes[0].color} 0deg ${step}deg,${prizes[1].color} ${step}deg ${step*2}deg,${prizes[2].color} ${step*2}deg ${step*3}deg,${prizes[3].color} ${step*3}deg 360deg)`;
+prizes.forEach((p,i)=>{const l=document.createElement('div');l.className='label';const a=i*step+step/2;const r=110;const x=r*Math.sin(a*Math.PI/180);const y=-r*Math.cos(a*Math.PI/180);l.style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px)) rotate(${a}deg)`;l.innerHTML=`<div>${p.icon}</div><div>${p.text}</div>`;wheel.appendChild(l);});
+function spin(){const b=document.getElementById('spinBtn');b.disabled=true;b.style.opacity=.7;const d=720+Math.floor(Math.random()*360);wheel.style.transform=`rotate(${d}deg)`;document.getElementById('result').textContent='';setTimeout(()=>{const i=Math.floor(((360-(d%360))/step))%prizes.length;const p=prizes[i];document.getElementById('result').textContent=`🎉 Bạn trúng: ${p.text} ${p.icon}`;},4200);}
+</script>
+</body>
+</html>
