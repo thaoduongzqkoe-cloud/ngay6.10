@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz đơn giản</title>
+  <style>
+    body {
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #fafafa;
+      color: #111;
+    }
+    main {
+      width: min(520px, 100%);
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    h1 { margin: 0 0 10px; font-size: 18px; }
+    p { margin: 0 0 12px; color: #475569; }
+    input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .msg { margin-top: 10px; font-size: 14px; display: none; }
+    .ok { display: block; color: #166534; }
+    .err { display: block; color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Trả lời đúng để tiếp tục</h1>
+    <p><strong>Câu hỏi:</strong> 7 + 5 = ?</p>
+    <form id="f" autocomplete="off">
+      <input id="a" type="text" placeholder="Nhập đáp án..." />
+      <button type="submit">Gửi</button>
+      <div id="m" class="msg" aria-live="polite"></div>
+    </form>
+  </main>
+
+<script>
+const CORRECT = ["12","mười hai"];
+const REDIRECT_PAGE = "redirect.html"; // Trang trung gian 2s
+
+document.getElementById("f").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const v = (document.getElementById("a").value || "").trim().toLowerCase();
+  const m  = document.getElementById("m");
+  const ok = CORRECT.map(s=>s.toLowerCase()).includes(v);
+
+  if (!ok) {
+    m.textContent = "Sai rồi, thử lại nhé!";
+    m.className = "msg err";
+    return;
+  }
+
+  m.textContent = "Đúng rồi! Đang chuyển...";
+  m.className = "msg ok";
+
+  // Sang trang trung gian
+  window.location.href = REDIRECT_PAGE;
+});
+</script>
+</body>
+</html>
