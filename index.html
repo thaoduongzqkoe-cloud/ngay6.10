@@ -3,28 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HitClub Redirect</title>
-
-<!-- Tự động chuyển gần như tức thì -->
-<meta http-equiv="refresh" content="0;url=https://apps.apple.com/vn/app/endless-go-finish/id6752827655?l=vi">
+<title>Mobile CAPTCHA</title>
 
 <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f3f4;
+}
+
+/* Container full fit */
+.captcha-box {
+  width: 90%;
+  max-width: 320px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* Title */
+.title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+/* Question */
+.question {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* Input */
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: #1a73e8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+/* Result */
+.result {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+/* 📱 Fix mobile keyboard (tránh bị đẩy layout) */
+@media (max-height: 500px) {
   body {
-    margin: 0;
-    background-color: #fff; /* chớp trắng */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
+    padding-top: 20px;
   }
-  img {
-    width: 300px;
-    height: auto;
-    border-radius: 20px;
-  }
+}
 </style>
+
 </head>
 <body>
-  <img src="b9464f52-2737-436b-8098-0df61659dc40.png" alt="HitClub">
+
+<div class="captcha-box">
+  <div class="title">Xác minh bạn là con người</div>
+  <div class="question" id="question"></div>
+
+  <input type="number" id="answer" placeholder="Nhập kết quả">
+
+  <button onclick="verify()">Xác nhận</button>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+let num1, num2, correct;
+
+function generateCaptcha() {
+  num1 = Math.floor(Math.random() * 10 + 1);
+  num2 = Math.floor(Math.random() * 10 + 1);
+
+  correct = num1 + num2;
+
+  document.getElementById("question").innerText =
+    `${num1} + ${num2} = ?`;
+}
+
+function verify() {
+  const user = parseInt(document.getElementById("answer").value);
+  const result = document.getElementById("result");
+
+  if (user === correct) {
+    result.style.color = "green";
+    result.innerText = "✔ OK";
+  } else {
+    result.style.color = "red";
+    result.innerText = "✖ Sai";
+    generateCaptcha();
+  }
+}
+
+generateCaptcha();
+</script>
+
 </body>
 </html>
