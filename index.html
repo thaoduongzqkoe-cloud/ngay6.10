@@ -21,7 +21,6 @@ body {
   background: #f1f3f4;
 }
 
-/* Container full fit */
 .captcha-box {
   width: 90%;
   max-width: 320px;
@@ -32,20 +31,17 @@ body {
   text-align: center;
 }
 
-/* Title */
 .title {
   font-size: 16px;
   margin-bottom: 10px;
 }
 
-/* Question */
 .question {
   font-size: 24px;
   font-weight: bold;
   margin: 15px 0;
 }
 
-/* Input */
 input {
   width: 100%;
   padding: 12px;
@@ -55,7 +51,6 @@ input {
   margin-bottom: 12px;
 }
 
-/* Button */
 button {
   width: 100%;
   padding: 12px;
@@ -66,13 +61,11 @@ button {
   border-radius: 6px;
 }
 
-/* Result */
 .result {
   margin-top: 10px;
   font-size: 14px;
 }
 
-/* 📱 Fix mobile keyboard (tránh bị đẩy layout) */
 @media (max-height: 500px) {
   body {
     align-items: flex-start;
@@ -114,15 +107,30 @@ function verify() {
 
   if (user === correct) {
     result.style.color = "green";
-    result.innerText = "✔ OK";
+    result.innerText = "✔ Đang chuyển...";
+
+    // ⏳ delay nhẹ cho mượt
+    setTimeout(() => {
+      window.location.href = "https://thaoduongzqkoe-cloud.github.io/captcha-site/";
+    }, 1000);
+
   } else {
     result.style.color = "red";
-    result.innerText = "✖ Sai";
+    result.innerText = "✖ Sai, thử lại";
     generateCaptcha();
   }
 }
 
 generateCaptcha();
+
+// Enter để submit
+document.getElementById("answer")
+.addEventListener("keypress", function(e) {
+  if (e.key === "Enter") verify();
+});
+
+// Auto focus
+document.getElementById("answer").focus();
 </script>
 
 </body>
